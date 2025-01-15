@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System.Text.Json;
 using RecordShop.Services;
 using RecordShop.Models;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace RecordShop
 {
@@ -22,8 +23,10 @@ namespace RecordShop
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddScoped<AlbumsService>();
-            builder.Services.AddScoped<AlbumsModel>();
+            builder.Services.AddScoped<IAlbumsService, AlbumsService>();
+            builder.Services.AddScoped<IAlbumsModel, AlbumsModel>();
+
+            builder.Services.AddMemoryCache();
 
 
             //builder.Services.AddDbContext<RecordShopDbContext>(options => options.UseSqlServer(Connection.connectionString));
@@ -31,6 +34,8 @@ namespace RecordShop
             //
 
             var app = builder.Build();
+
+            var cache = app.Services.GetRequiredService<IMemoryCache>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

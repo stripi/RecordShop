@@ -1,6 +1,6 @@
 ﻿namespace RecordShop.Models
 {
-    public class AlbumsModel
+    public class AlbumsModel : IAlbumsModel
     {
         RecordShopDbContext _dbContext = new RecordShopDbContext();
 
@@ -36,7 +36,7 @@
 
         public void AddAlbum(Album album)
         {
-            _dbContext.Albums.Add(album);
+            _dbContext.Albums.Add(new Album() { Name = album.Name, Artist = album.Artist, Genre = album.Genre, Stock = album.Stock, Year = album.Year});
             _dbContext.SaveChanges();
         }
 
@@ -44,8 +44,8 @@
         {
             if (DeleteAlbum(id))
             {
-            AddAlbum(album);
-            return true;
+                AddAlbum(album);
+                return true;
             }
             return false;
         }

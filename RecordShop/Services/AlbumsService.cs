@@ -2,11 +2,11 @@
 
 namespace RecordShop.Services
 {
-    public class AlbumsService
+    public class AlbumsService : IAlbumsService
     {
-        private readonly AlbumsModel _albumsModel;
+        private readonly IAlbumsModel _albumsModel;
 
-        public AlbumsService(AlbumsModel albumsModel)
+        public AlbumsService(IAlbumsModel albumsModel)
         {
             _albumsModel = albumsModel;
         }
