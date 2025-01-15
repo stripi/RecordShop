@@ -15,6 +15,8 @@
         public string Artist { get; set; }
         public string Genre { get; set; }
         public int Year { get; set; }
+        public int Stock { get; set; }
+
 
 
     }

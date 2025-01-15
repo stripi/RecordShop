@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using System.Text.Json;
+using RecordShop.Services;
+using RecordShop.Models;
 
 namespace RecordShop
 {
@@ -20,7 +22,13 @@ namespace RecordShop
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<RecordShopDbContext>(options => options.UseSqlServer(Connection.connectionString));
+            builder.Services.AddScoped<AlbumsService>();
+            builder.Services.AddScoped<AlbumsModel>();
+
+
+            //builder.Services.AddDbContext<RecordShopDbContext>(options => options.UseSqlServer(Connection.connectionString));
+            builder.Services.AddDbContext<RecordShopDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            //
 
             var app = builder.Build();
 
