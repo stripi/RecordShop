@@ -40,16 +40,28 @@
             _dbContext.SaveChanges();
         }
 
-        public void UpdateAlbum(Album album, int id)
+        public bool UpdateAlbum(Album album, int id)
         {
-            DeleteAlbum(id);
+            if (DeleteAlbum(id))
+            {
             AddAlbum(album);
+            return true;
+            }
+            return false;
         }
 
-        public void DeleteAlbum(int id)
+        public bool DeleteAlbum(int id)
         {
-            _dbContext.Remove(_dbContext.Albums.FirstOrDefault(a => a.Id == id));
-            _dbContext.SaveChanges();
+            try
+            {
+                _dbContext.Remove(_dbContext.Albums.FirstOrDefault(a => a.Id == id));
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
         }
 
     }

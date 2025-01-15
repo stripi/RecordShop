@@ -40,13 +40,13 @@ namespace RecordShop.Services
         {
             _albumsModel.AddAlbum(album);
         }
-        public void DeleteAlbum(int id)
+        public bool DeleteAlbum(int id)
         {
-            _albumsModel.DeleteAlbum(id);
+            return _albumsModel.DeleteAlbum(id);
         }
-        public void UpdateAlbum(Album album, int id)
+        public bool UpdateAlbum(Album album, int id)
         {
-            _albumsModel.UpdateAlbum(album, id);
+            return _albumsModel.UpdateAlbum(album, id);
         }
     }
 }
