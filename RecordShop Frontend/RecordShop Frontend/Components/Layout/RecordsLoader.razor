@@ -1,0 +1,26 @@
+﻿<RecordSummaryList albumsList="responseAlbums"/>
+
+@code {
+    //public List<RecordShop.Album> responseAlbums { get; set; } = TestAlbum.albumList;
+
+    public List<RecordShop.Album> responseAlbums { get; set; } = new List<RecordShop.Album>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var http = new HttpClient();
+
+            List<RecordShop.Album>? response = await http.GetFromJsonAsync<List<RecordShop.Album>>("https://localhost:7029/Albums");
+
+            if (response != null)
+            {
+                responseAlbums = response;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+        }
+    }
+}

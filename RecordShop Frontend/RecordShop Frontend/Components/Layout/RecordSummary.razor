@@ -1,0 +1,24 @@
+﻿<div class="recordSummary">
+    <h3>@album.Name</h3>
+    <h3>@album.Artist</h3>
+    <p>Release Year: @album.Year</p>
+    <p>Genre: @album.Genre</p>
+    @if (album.Stock > 0)
+    {
+        <button>Order Now</button>
+    }
+    else
+    {
+        <p class="bold">Out of Stock</p>
+    }
+
+</div>
+
+
+
+@code {
+
+    [Parameter]
+    public RecordShop.Album album { get; set; }
+
+}

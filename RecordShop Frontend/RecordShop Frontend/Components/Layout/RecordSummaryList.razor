@@ -1,0 +1,12 @@
+﻿<ul class="inline">
+@foreach (RecordShop.Album album in albumsList)
+{
+        <li class="inline"><RecordSummary album="album" /></li>
+}
+</ul>
+@code {
+    [Parameter]
+    public List<RecordShop.Album> albumsList { get; set; }
+
+
+}
