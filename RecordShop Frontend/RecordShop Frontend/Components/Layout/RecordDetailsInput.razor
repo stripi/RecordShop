@@ -1,0 +1,15 @@
+﻿@rendermode InteractiveServer
+@inject NavigationManager Navigation
+<div>
+<p>Enter record ID</p>
+<input type="text" @bind-value="inputId" id="recordIdInput">
+<button id="searchButton" type="button" @onclick ="PerformNavigate">Go</button>
+</div>
+
+@code {
+    private int inputId;
+    private void PerformNavigate()
+    {
+        Navigation.NavigateTo($"/Details/{inputId}");
+    }
+}

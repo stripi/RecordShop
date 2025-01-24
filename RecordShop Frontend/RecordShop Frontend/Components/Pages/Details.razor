@@ -1,0 +1,19 @@
+﻿@page "/Details/{id:int?}"
+@page "/Details"
+
+@using Layout
+
+<PageTitle>Details</PageTitle>
+<RecordShop_Frontend.Components.Layout.RecordDetailsInput></RecordShop_Frontend.Components.Layout.RecordDetailsInput>
+@if (id == 0)
+{
+}
+else
+{
+<RecordShop_Frontend.Components.Layout.RecordDetailsLoader idToFind="id"/>
+}
+
+@code{
+    [Parameter]
+    public int id { get; set; }
+}

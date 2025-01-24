@@ -1,0 +1,26 @@
+﻿@if (album != null)
+{
+<div class="recordSummary">
+    <input type="text" value="@album.Name" />
+    <input type="text" value="@album.Artist" />
+    <input type="text" value="@album.Year" />
+    <input type="text" value="@album.Genre" />
+    <input type="text" value="@album.Stock" />
+    <button>Confirm Changes</button>
+</div>
+}
+else
+{   
+    <div class="recordSummary">
+    <p>No Record found</p>
+    </div>
+}
+
+
+
+@code {
+
+    [Parameter]
+    public RecordShop.Album? album { get; set; }
+
+}

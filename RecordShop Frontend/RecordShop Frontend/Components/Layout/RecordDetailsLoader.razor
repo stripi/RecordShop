@@ -1,0 +1,31 @@
+﻿<RecordSummary album="responseAlbum"/>
+<RecordDetailsSummary album="responseAlbum" />
+
+
+@code {
+    //public List<RecordShop.Album> responseAlbums { get; set; } = TestAlbum.albumList;
+    [Parameter]
+    public int idToFind { get; set; }
+
+    public RecordShop.Album? responseAlbum { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var http = new HttpClient();
+
+            RecordShop.Album? response = await http.GetFromJsonAsync<RecordShop.Album>($"https://localhost:7029/Albums/{idToFind}");
+
+            if (response != null)
+            {
+                responseAlbum = response;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+        }
+    }
+}
