@@ -1,7 +1,9 @@
-﻿<RecordSummaryList albumsList="responseAlbums"/>
+﻿<RecordSummaryList albumsList="responseAlbums" ViewMode="ViewMode"/>
 
 @code {
-    //public List<RecordShop.Album> responseAlbums { get; set; } = TestAlbum.albumList;
+
+    [Parameter]
+    public bool? ViewMode { get; set; }
 
     public List<RecordShop.Album> responseAlbums { get; set; } = new List<RecordShop.Album>();
 
@@ -23,4 +25,5 @@
             Console.WriteLine($"An error occurred: {ex.Message}");
         }
     }
+
 }

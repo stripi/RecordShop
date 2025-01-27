@@ -1,12 +1,22 @@
 ﻿<ul class="inline">
 @foreach (RecordShop.Album album in albumsList)
 {
-        <li class="inline"><RecordSummary album="album" /></li>
+    if (ViewMode == true)
+        {
+        <li class="inline"><RecordViewSummary albumSummary="album" /></li>
+
+        }
+        else
+        {
+        <li class="inline"><RecordSummary albumSummary="album" /></li>          
+        }
 }
 </ul>
 @code {
     [Parameter]
     public List<RecordShop.Album>? albumsList { get; set; }
 
+    [Parameter]
+    public bool? ViewMode { get; set; }
 
 }

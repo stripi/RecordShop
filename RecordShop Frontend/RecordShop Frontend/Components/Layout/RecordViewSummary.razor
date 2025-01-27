@@ -1,0 +1,25 @@
+﻿@rendermode InteractiveServer
+@inject NavigationManager Navigation
+
+@if (albumSummary != null)
+{
+    <div class="recordSummary" @onclick="GoToRecord" style="cursor: pointer;">
+    <h3>@albumSummary.Name</h3>
+    <h3>@albumSummary.Artist</h3>
+    <p>Release Year: @albumSummary.Year</p>
+    <p>Genre: @albumSummary.Genre</p>
+</div> 
+}
+
+
+
+@code {
+
+    [Parameter]
+    public RecordShop.Album? albumSummary { get; set; }
+
+    private async Task GoToRecord()
+    {
+        Navigation.NavigateTo($"/Records/{albumSummary.Id}");
+    }
+}

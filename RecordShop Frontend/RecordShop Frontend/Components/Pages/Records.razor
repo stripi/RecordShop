@@ -6,10 +6,12 @@
 <PageTitle>Records</PageTitle>
 @if (id == 0)
 {
+    <RecordShop_Frontend.Components.Layout.RecordsLoader ViewMode="true" />
 
 }
 else
 {
+    <RecordShop_Frontend.Components.Layout.RecordDetailsLoader viewOnly="true" idToFind="id" />
 
 }
 

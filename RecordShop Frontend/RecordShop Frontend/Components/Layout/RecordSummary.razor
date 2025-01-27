@@ -1,11 +1,11 @@
-﻿@if (album != null)
+﻿@if (albumSummary != null)
 {
 <div class="recordSummary">
-    <h3>@album.Name</h3>
-    <h3>@album.Artist</h3>
-    <p>Release Year: @album.Year</p>
-    <p>Genre: @album.Genre</p>
-    @if (album.Stock > 0)
+    <h3>@albumSummary.Name</h3>
+    <h3>@albumSummary.Artist</h3>
+    <p>Release Year: @albumSummary.Year</p>
+    <p>Genre: @albumSummary.Genre</p>
+    @if (albumSummary.Stock > 0)
     {
         <button>Order Now</button>
     }
@@ -22,6 +22,6 @@
 @code {
 
     [Parameter]
-    public RecordShop.Album? album { get; set; }
+    public RecordShop.Album? albumSummary { get; set; }
 
 }
