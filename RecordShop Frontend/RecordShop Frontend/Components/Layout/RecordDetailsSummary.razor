@@ -1,12 +1,14 @@
-﻿@if (album != null)
+﻿@rendermode InteractiveServer
+
+@if (album != null)
 {
 <div class="recordSummary">
-    <input type="text" value="@album.Name" />
-    <input type="text" value="@album.Artist" />
-    <input type="text" value="@album.Year" />
-    <input type="text" value="@album.Genre" />
-    <input type="text" value="@album.Stock" />
-    <button>Confirm Changes</button>
+    <input type="text" @bind-value="@inputName" placeholder="Name"/>
+    <input type="text" @bind-value="@inputArtist" placeholder="Artist" />
+    <input type="text" @bind-value="@inputYear" placeholder="Year"/>
+    <input type="text" @bind-value="@inputGenre" placeholder="Genre"/>
+    <input type="text" @bind-value="@inputStock" placeholder="Stock"/>
+    <button @onclick="UpdateRecordRequest">Confirm Changes</button>
 </div>
 }
 else
@@ -23,4 +25,18 @@ else
     [Parameter]
     public RecordShop.Album? album { get; set; }
 
+    private string inputName { get; set; }
+    private string inputArtist { get; set; }
+    private string inputGenre { get; set; }
+    private int inputYear { get; set; }
+    private int inputStock { get; set; }
+
+    public async void UpdateRecordRequest()
+    {
+        RecordShop.Album updatedAlbum = new RecordShop.Album { Id = album.Id, Name = album.Name, Artist = inputArtist, Year = album.Year, Genre = inputGenre, Stock = album.Stock };
+        var http = new HttpClient();
+        Console.WriteLine($"Posting to https://localhost:7029/Albums/Manage/Update?id={album.Id}, Id = {album.Id}, Name = {inputName}, Artist = {inputArtist}, Year = {album.Year}");
+        await http.PostAsJsonAsync($"https://localhost:7029/Albums/Manage/Update?id={album.Id}", updatedAlbum);
+
+    }
 }

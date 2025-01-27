@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Components\Pages\Records.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
     <Content Update="Components\Pages\Details.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>

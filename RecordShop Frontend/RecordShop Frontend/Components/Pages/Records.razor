@@ -1,0 +1,19 @@
+﻿@page "/Records/{id:int?}"
+@page "/Records"
+
+@using Layout
+
+<PageTitle>Records</PageTitle>
+@if (id == 0)
+{
+
+}
+else
+{
+
+}
+
+@code{
+    [Parameter]
+    public int id { get; set; }
+}
