@@ -1,0 +1,31 @@
+﻿@rendermode InteractiveServer
+
+<div class="recordSummary">
+    <input type="text" @bind-value="@inputName" placeholder="Name"/>
+    <input type="text" @bind-value="@inputArtist" placeholder="Artist" />
+    <input type="text" @bind-value="@inputYear" placeholder="Year"/>
+    <input type="text" @bind-value="@inputGenre" placeholder="Genre"/>
+    <input type="text" @bind-value="@inputStock" placeholder="Stock"/>
+    <button @onclick="UpdateRecordRequest">Confirm Changes</button>
+</div>
+
+
+@code {
+
+
+
+    public string inputName { get; set; }
+    public string inputArtist { get; set; }
+    public string inputGenre { get; set; }
+    public int inputYear { get; set; }
+    public int inputStock { get; set; }
+
+    public async void UpdateRecordRequest()
+    {
+        RecordShop.Album updatedAlbum = new RecordShop.Album { Id = 0, Name = inputName, Artist = inputArtist, Year = inputYear, Genre = inputGenre, Stock = inputStock };
+        var http = new HttpClient();
+        Console.WriteLine($"Posting to https://localhost:7029/Albums/Manage/Post, Id = 0, Name = {inputName}, Artist = {inputArtist}, Year = {inputYear}");
+        await http.PostAsJsonAsync($"https://localhost:7029/Albums/Manage/Post", updatedAlbum);
+
+    }
+}
